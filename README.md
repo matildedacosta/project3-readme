@@ -60,13 +60,13 @@ This is an app to connect portuguese musicians, producers and artists. It allows
 
 **Pages:**
 
-//GLOBAL PAGES
+*GLOBAL PAGES*
 
 - LoginPage
 - SignupPage
 - HomePage
 
-//PROFILE PAGES
+*PROFILE PAGES*
 
 - ProfilePage
 - EditProfilePage
@@ -74,12 +74,12 @@ This is an app to connect portuguese musicians, producers and artists. It allows
 - FollowingPage
 - MessagesPage
 
-//USERS PAGES
+*USERS PAGES*
 
 - SearchUsersPage
 - UserDetailsPage
 
-//EVENTS PAGES
+*EVENTS PAGES*
 
 - SearchEventsPage
 - MyEventsPage
