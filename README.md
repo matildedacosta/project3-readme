@@ -139,7 +139,7 @@ This is an app to connect portuguese musicians, producers and artists. It allows
     - `.signup(user)`
     - `.logout()`
     - `.validate()`
-
+   
 - **User Service**
 
   - `userService` :
@@ -147,19 +147,31 @@ This is an app to connect portuguese musicians, producers and artists. It allows
     - `.getCurrentUser()`
     - `.DeleteCurrentUser()`
 
-- **Tournament Service**
+- **Event Service**
 
-  - `tournamentService` :
-    - `.addTournament(tournamentData)`
-    - `.getTournaments()`
-    - `.getOneTournament(id)`
-    - `.deleteTournament(id)`
+  - `eventService` :
+    - `.addEvent(EventData)`
+    - `.getEvents()`
+    - `.getOneEvent(id)`
+    - `.editEvent(EventData)`
+    - `.deleteEvent(id)`
 
-- **Player Service**
+- **Follows Service**
 
-  - `playerService` :
-    - `.createPlayer(id)`
-    - `.getPlayerDetails(id)`
+  - `followsService` :
+    - `.allFollowing ()`
+    - `.addFollowing (id)`
+    - `.removeFollowing (id)`
+    - `.allFollowers ()`
+
+- **Search Service**
+
+  - `searchService` :
+    - `.searchUser ()`
+    - `.searchEvent ()`
+    - `.searchUserFilter (filter)`
+    - `.searchEventFilter (filter)`
+    
 
 <br>
 
@@ -228,8 +240,8 @@ This is an app to connect portuguese musicians, producers and artists. It allows
 | POST        | `/auth/login`                 | {email, password} | 200            | 401          | Checks if fields not empty (422), if user exists (404), and if password matches (404), then stores user in session              |
 | POST        | `/auth/logout`                |                      | 204            | 400          | Logs out the user                                                                                                               |
 | DELETE      | `/auth/delete`                |                      | 204            | 400          | Deletes user                                                                                                                    |
-| GET         | `/api/events`                 |                      |                | 400          | Show all tournaments                                                                                                            |
-| GET         | `/api/events/:id`             |                      |                |              | Show specific tournament                                                                                                        |
+| GET         | `/api/events`                 |                      |                | 400          | Show all events                                                                                                            |
+| GET         | `/api/events/:id`             |                      |                |              | Show specific event                                                                                                        |
 | POST        | `/api/events/create`          | { events model }     | 201            | 400          | Create and save a new event                                                                                                     |
 | DELETE      | `/api/events/:id`             |                      | 201            | 400          | delete event.                                                                                                                   |
 | GET         | `/api/user-details/:id`       |                      |                |              | show specific user                                                                                                              |
