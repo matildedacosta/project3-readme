@@ -88,7 +88,7 @@ This is an app to connect portuguese musicians, producers and artists. It allows
 
 **Components:**
 
-//GLOBAL PAGES
+*GLOBAL PAGES*
 
 - Navbar.jsx
 - Footer.jsx
@@ -102,7 +102,7 @@ This is an app to connect portuguese musicians, producers and artists. It allows
 - AboutUser.jsx (SignupPage)
 - AboutUserWork.jsx (SignupPage)
 
-//PROFILE PAGES
+*PROFILE PAGES*
 
 - MySkills.jsx (ProfilePage)
 - MyLinks.jsx (ProfilePage)
@@ -118,7 +118,7 @@ This is an app to connect portuguese musicians, producers and artists. It allows
 - MessageBubbles.jsx (MessagesPage)
 - RightSideMessages.jsx (MessagesPage)
 
-//USERS PAGES && EVENTS PAGES
+*USERS PAGES && EVENTS PAGES*
 
 - SearchBar.jsx (SearchUsersPage && SearchEventsPage)
 - SearchCard.jsx (SearchUsersPage && SearchEventsPage)
