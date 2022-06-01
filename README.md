@@ -164,11 +164,15 @@ This is an app to connect portuguese musicians, producers and artists. It allows
     - `.removeFollowing (id)`
     - `.allFollowers ()`
 
+- **Comment Service**
+
+  - `searchService` :
+    - `.searchUserFilter (filter)`
+    - `.searchEventFilter (filter)`
+
 - **Search Service**
 
   - `searchService` :
-    - `.searchUser ()`
-    - `.searchEvent ()`
     - `.searchUserFilter (filter)`
     - `.searchEventFilter (filter)`
     
@@ -198,14 +202,15 @@ This is an app to connect portuguese musicians, producers and artists. It allows
   Instagram: {type: String},
   Facebook: {type: String},
   },
-  myEvents: [ { type: Schema.Types.ObjectId, ref:'Events' } ],
-  myComments: [ { type: Schema.Types.ObjectId, ref:'Comments' } ]
-	following: [ { type: Schema.Types.ObjectId, ref:'User' } ],
+  myEvents: [ { type: Schema.Types.ObjectId, ref:'Event' } ],
+  myComments: [ { type: Schema.Types.ObjectId, ref:'Comment' } ],
+  receivedComments: [ { type: Schema.Types.ObjectId, ref:'Comment' } ],
+  following: [ { type: Schema.Types.ObjectId, ref:'User' } ],
   followers: [ { type: Schema.Types.ObjectId, ref:'User' } ],
 }
 ```
 
-**Events model**
+**Event model**
 
 ```javascript
  {
@@ -213,19 +218,18 @@ This is an app to connect portuguese musicians, producers and artists. It allows
    image: { type: String, default: '' },
    city: { type: String, required: true },
    date: { type: DateAndTime, required: true },
-   creator: [ { type: Schema.Types.ObjectId, ref:'User' } ],
+   creator: { type: Schema.Types.ObjectId, ref:'User' },
    attendees: [ { type: Schema.Types.ObjectId, ref:'User' } ],
  }
 ```
 
-**Comments model**
+**Comment model**
 
 ```javascript
 {
   comment: { type: String, required: true },
   date: { type: DateAndTime, required: true /* ? */},
-  commentBy: [ { type: Schema.Types.ObjectId, ref:'User' } ],
-  commentOn: [ { type: Schema.Types.ObjectId, ref:'User' } ],
+  commentBy: { type: Schema.Types.ObjectId, ref:'User' },
 }
 ```
 
@@ -236,10 +240,11 @@ This is an app to connect portuguese musicians, producers and artists. It allows
 | HTTP Method | URL                           | Request Body         | Success status | Error Status | Description                                                                                                                     |
 | ----------- | ----------------------------- | -------------------- | -------------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------- |
 | GET         | `/auth/profile `              | Saved session        | 200            | 404          | Check if user is logged in and return profile page                                                                              |
+| PUT         | `/auth/profile/:id `              | Request Body        | 200            | 404          | Edit user profile
 | POST        | `/auth/signup`                | {user model}         | 201            | 404          | Checks if fields not empty (422) and user not exists (409), then create user with encrypted password, and store user in session |
 | POST        | `/auth/login`                 | {email, password} | 200            | 401          | Checks if fields not empty (422), if user exists (404), and if password matches (404), then stores user in session              |
 | POST        | `/auth/logout`                |                      | 204            | 400          | Logs out the user                                                                                                               |
-| DELETE      | `/auth/delete`                |                      | 204            | 400          | Deletes user                                                                                                                    |
+| DELETE      | `/auth/:id`                |                      | 204            | 400          | Deletes user                                                                                                                    |
 | GET         | `/api/events`                 |                      |                | 400          | Show all events                                                                                                            |
 | GET         | `/api/events/:id`             |                      |                |              | Show specific event                                                                                                        |
 | POST        | `/api/events/create`          | { events model }     | 201            | 400          | Create and save a new event                                                                                                     |
@@ -250,12 +255,12 @@ This is an app to connect portuguese musicians, producers and artists. It allows
 | GET         | `/api/user-following`         |                      | 200            | 404          | show list of users I follow.                                                                                                    |
 | GET         | `/api/user-followers`         |                      | 201            | 400          | show list of users who follow me.                                                                                               |
 | GET         | `/api/search/all-users`       |                      | 201            | 400          | show random 10 users on platform.                                                                                               |
-| GET         | `/api/search/user-filters`    |                      | 201            | 400          | show filtered users on platform.                                                                                                |
+| POST         | `/api/search/user-filters`    |                      | 201            | 400          | show filtered users on platform.                                                                                                |
 | GET         | `/api/search/all-events`      |                      | 201            | 400          | show random 10 events on platform.                                                                                              |
-| GET         | `/api/search/event-filters`   |                      | 201            | 400          | show filtered events on platform.                                                                                               |
+| POST         | `/api/search/event-filters`   |                      | 201            | 400          | show filtered events on platform.                                                                                               |
 | GET         | `/api/comments/:id`           |                      |                |              | Show comments of users (?)                                                                                                      |
-| POST        | `/api/comments/:id`           |                      |                |              | Creates comment.                                                                                                                |
-| DELETE      | `/api/comments/delete`        |                      | 204            | 400          | Deletes comment (by author only)                                                                                                |
+| POST        | `/api/comments`           |                      |                |              | Creates comment.                                                                                                                |
+| DELETE      | `/api/comments/:id`        |                      | 204            | 400          | Deletes comment (by author only)                                                                                                |
 
 <br>
 
