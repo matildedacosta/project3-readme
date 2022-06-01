@@ -289,4 +289,4 @@ The url to your repository and to your deployed project
 
 ### Contributors
 
-Matilde Costa - <github-username> - <linkedin-profile-link>
+Matilde Costa - <[matildedacosta](https://github.com/matildedacosta)> - <[matildedacosta](https://www.linkedin.com/in/matildedacosta/)>
